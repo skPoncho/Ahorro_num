@@ -4,11 +4,8 @@ setlocale(LC_MONETARY, 'es_MX');
 date_default_timezone_set('America/Mexico_City');
 include_once('./Classes/Catalogo.class.php');
 $catalogo = new Catalogo();
-
 $Aplicacion="Apuestas ";
 $fecha = date("Y-m-d");
-
-
 ?>
 
 
@@ -51,7 +48,7 @@ $fecha = date("Y-m-d");
   <?php
   $cons = 'select (SELECT  par1.Valor FROM parametros par1 WHERE par1.Identificador = "ahorro" ) as total ,
 			(SELECT par2.Valor FROM parametros par2 WHERE par2.Identificador = "dias" ) as dias ,
-            (SELECT SUM(ah1.Numero) total FROM ahorro ah1 ) as total_ahorrado ';
+            (SELECT SUM(ah1.Numero) total FROM ahorro ah1 ) as total_ahorrado  ';
   $resu= $catalogo->obtenerLista($cons);
   while ($rs = mysqli_fetch_array($resu)){
     $total_ = $rs['total'];
@@ -115,7 +112,6 @@ while ($rs = mysqli_fetch_array($resu)){
   array_push($numeros_yasalieron,$rs['Numero']);
 }
 
-
  ?>
 
           <div class="row">
@@ -123,8 +119,6 @@ while ($rs = mysqli_fetch_array($resu)){
               <center ><h1>Número del día : <?php echo $valor_dia; ?> </h1></center>
               <center ><h2>Reparto : <?php echo round($valor_dia / 3,2) ?>  </h2></center>
               <center ><h3>Fecha :  <?php echo $fecha; ?></h3></center>
-
-
               <table class="table table-striped table-bordered" id="tabla_movimientos" style="width:100%;margin-bottom: 0px !important;font-size: .7em;">
                 <thead>
                   <th>Fecha</th>
